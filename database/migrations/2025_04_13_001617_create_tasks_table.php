@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("description");
-            $table->forignIdFor(Project::class);
-            $table->forignIdFor(User::class);
+            $table->foreignIdFor(Project::class);
+            $table->foreignIdFor(User::class);
             $table->boolean("completed");
             $table->integer("progress");
             $table->timestamps();
