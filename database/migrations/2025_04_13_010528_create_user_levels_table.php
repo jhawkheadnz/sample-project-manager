@@ -4,10 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\User;
-use App\Models\Project;
-use App\Models\UserLevel;
-
 return new class extends Migration
 {
     /**
@@ -15,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_users', function (Blueprint $table) {
+        Schema::create('user_levels', function (Blueprint $table) {
             $table->id();
-            $table->forignIdFor(Project::class);
-            $table->forignIdFor(User::class);
-            $table->forignIdFor(UserLevel::class);
-            $table->string("extra-info");
             $table->timestamps();
         });
     }
@@ -30,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_users');
+        Schema::dropIfExists('user_levels');
     }
 };
