@@ -12,8 +12,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
+
+    // Project routes
     Route::get("projects", function(){
-        return Inertia::render("projects");
+        return Inertia::render("projects/index");
+    })->name('projects');
+
+    Route::get("projects/create", function(){
+        return Inertia::render("projects/create");
     })->name('projects');
 
 });
