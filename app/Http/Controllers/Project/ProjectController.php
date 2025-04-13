@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Project\StoreProjectRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +26,23 @@ class ProjectController extends Controller
 
     }
 
-    public function store(StoreProjectRequest $request) : RedirectResponse {
+    public function store(Request $request) : RedirectResponse {
 
-        $validated = $request->validated();
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'start_date' => 'required|string'
+        ]);
 
-        $validated = $request->safe()->only(['name', 'description', 'start_date']);
-        $validated = $request->safe()->except(['name', 'description', 'start_date']);
+        $project = Project::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'user_id' => Auth::id(),
+            'completed' => false
+        ]);
 
-        return redirect("/projects");
+        return to_route("projects");
 
     }
 
