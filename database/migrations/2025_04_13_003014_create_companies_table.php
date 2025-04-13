@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\User;
+
 return new class extends Migration
 {
     /**
@@ -13,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("code"); // shortened version of company name
+            $table->string("description");
+            $table->string("address");
+            $table->string("color");
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }
