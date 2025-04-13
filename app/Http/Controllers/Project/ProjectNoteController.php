@@ -7,4 +7,5 @@ use Illuminate\Http\Request;
 class ProjectNoteController extends Controller
 {
     //
+    public function index(){}
 }
