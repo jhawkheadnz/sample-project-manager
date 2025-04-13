@@ -5,6 +5,7 @@ import { FormEventHandler } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { DatePicker } from '@/components/ui/datepicker';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -32,7 +33,7 @@ export default function Dashboard() {
                         placeholder="Project Name..." />
                     Project Description: <Textarea className="h-[160px]" id="project_description" placeholder="Describe this project..."></Textarea>
 
-                    Project Start Date: 
+                    Project Start Date: <DatePicker />
 
                     <Button type="submit">Create Project</Button>
                 </form>
