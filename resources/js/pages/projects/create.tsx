@@ -1,11 +1,10 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, router, useForm } from '@inertiajs/react';
-import { FormEventHandler, useState } from 'react';
+import { Head, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { DatePicker } from '@/components/ui/datepicker';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -19,21 +18,16 @@ type CreateProjectForm = {
     description: string,
     start_date: string
 }
+export default function Dashboard() {
 
-interface ProjectProps {
-    status?: string;
-}
-
-export default function Dashboard({ status }: ProjectProps) {
-
-    const { data, setData, post, processing, errors, reset } = useForm<Required<CreateProjectForm>>({   
+    const { data, setData, post } = useForm<Required<CreateProjectForm>>({
         name: '',
         description: '',
-        start_date: ''
+        start_date: '',
     });
 
     const handleSubmit: FormEventHandler = (e) => {
-        
+
         e.preventDefault();
 
         console.log(data);
@@ -49,8 +43,8 @@ export default function Dashboard({ status }: ProjectProps) {
             <Head title="Projects" />
             <div className="max-w-[600px] flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
-                    
-                    Project Name: 
+
+                    Project Name:
                     <Input
                         id="project_name"
                         type='text'
@@ -59,16 +53,16 @@ export default function Dashboard({ status }: ProjectProps) {
                         value={data.name}
                         onChange={(e)=> setData('name', e.target.value)}
                         placeholder="Project Name..." />
-                    
-                    Project Description: 
-                    <Textarea 
-                        className="h-[160px]" 
-                        id="project_description" 
+
+                    Project Description:
+                    <Textarea
+                        className="h-[160px]"
+                        id="project_description"
                         required
                         tabIndex={2}
                         value={data.description}
                         onChange={(e) => setData('description', e.target.value)}
-                        placeholder="Describe this project..." 
+                        placeholder="Describe this project..."
                         />
 
                     Project Start Date: <Input

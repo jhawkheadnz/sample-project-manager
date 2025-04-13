@@ -18,10 +18,19 @@ class ProjectController extends Controller
     //
     public function index(){
 
-        $projects = Project::all();
+        $projects = Project::all()->map(function($project){
+            return [
+                'id' => $project->id,
+                'name' => $project->name,
+                'description' => $project->description,
+                'start_date' => $project->start_date
+                //'edit_url' => route("projects.edit", $project),
+            ];
+        });
 
         return Inertia::render("projects/index", [
-            'projects' => $projects
+            'projects' => $projects,
+            //'create_url' => route("projects.create"),
         ]);
 
     }
@@ -45,5 +54,8 @@ class ProjectController extends Controller
         return to_route("projects");
 
     }
+
+    public function edit(){}
+    public function create(){}
 
 }
