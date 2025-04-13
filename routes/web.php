@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\Project\ProjectController;
+
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
@@ -14,9 +16,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // Project routes
-    Route::get("projects", function(){
-        return Inertia::render("projects/index");
-    })->name('projects');
+    // Route::get("projects", function(){
+    //     return Inertia::render("projects/index");
+    // })->name('projects');
+
+    Route::get("projects", [ProjectController::class, "index"]);
 
     Route::get("projects/create", function(){
         return Inertia::render("projects/create");
