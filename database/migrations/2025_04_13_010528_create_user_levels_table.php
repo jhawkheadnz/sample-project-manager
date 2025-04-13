@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\User;
+
 return new class extends Migration
 {
     /**
@@ -13,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('user_levels', function (Blueprint $table) {
             $table->id();
+            $table->string("level"); // User level - eg. Admin, Readonly, etc.
+            $table->string("description");
+            $table->string("code"); // ADMIN, READONLY, etc.
+            $table->foeignIdFor(User::class);
             $table->timestamps();
         });
     }
