@@ -10,20 +10,26 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    
+
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
     Route::get("projects", [ProjectController::class, "index"])
         ->name("projects");
-        
+
     Route::get("projects/create", function(){
         return Inertia::render("projects/create");
     })->name('projects.create');
-    
+
     Route::post("projects/store", [ProjectController::class, "store"])
         ->name('projects.store');
+
+    Route::get("projects/{project}/edit", [ProjectController::class, "edit"])
+        ->name("projects.edit");
+
+    Route::get("projects/{project}/update", [ProjectController::class, "update"])
+        ->name("projects.update");
 
 });
 

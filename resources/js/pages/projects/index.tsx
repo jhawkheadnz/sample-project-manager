@@ -44,11 +44,17 @@ export default function Projects({ projects }: { projects: Project[] }) {
                         {
                             projects.map(
                                 (project) => (
-                                    <TableRow>
-                                        <TableCell className="font-medium">{project.name}</TableCell>
-                                        <TableCell>{project.description}</TableCell>
-                                        <TableCell className="text-right">{project.start_date}</TableCell>
-                                    </TableRow>
+
+                                        <TableRow>
+                                            <TableCell className="font-medium">
+                                                <Link href={`projects/` + project.id + `/edit`}>
+                                                    {project.name}
+                                                </Link>
+                                            </TableCell>
+                                            <TableCell>{project.description}</TableCell>
+                                            <TableCell className="text-right">{project.start_date}</TableCell>
+                                        </TableRow>
+
                                 )
                             )
                         }
