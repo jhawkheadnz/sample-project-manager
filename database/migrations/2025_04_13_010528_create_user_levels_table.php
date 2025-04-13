@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("level"); // User level - eg. Admin, Readonly, etc.
             $table->string("description");
             $table->string("code"); // ADMIN, READONLY, etc.
-            $table->foeignIdFor(User::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

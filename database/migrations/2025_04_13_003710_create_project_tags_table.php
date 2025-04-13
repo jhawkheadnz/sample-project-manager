@@ -17,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('project_tags', function (Blueprint $table) {
             $table->id();
-            $table->forignIdFor(Project::class);
-            $table->forignIdFor(Tag::class);
-            $table->forignIdFor(User::class);
+            $table->foreignIdFor(Project::class);
+            $table->foreignIdFor(Tag::class);
+            $table->foreignIdFor(User::class);
             $table->string("extra_info");
             $table->timestamps();
         });

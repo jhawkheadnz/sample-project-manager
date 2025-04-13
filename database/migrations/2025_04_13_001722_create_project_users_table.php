@@ -17,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('project_users', function (Blueprint $table) {
             $table->id();
-            $table->forignIdFor(Project::class);
-            $table->forignIdFor(User::class);
-            $table->forignIdFor(UserLevel::class);
+            $table->foreignIdFor(Project::class);
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(UserLevel::class);
             $table->string("extra-info");
             $table->timestamps();
         });
