@@ -4,6 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Project;
+use App\Models\Tag;
+use App\Models\User;
+
 return new class extends Migration
 {
     /**
@@ -13,6 +17,10 @@ return new class extends Migration
     {
         Schema::create('project_tags', function (Blueprint $table) {
             $table->id();
+            $table->forignIdFor(Project::class);
+            $table->forignIdFor(Tag::class);
+            $table->forignIdFor(User::class);
+            $table->string("extra_info");
             $table->timestamps();
         });
     }
