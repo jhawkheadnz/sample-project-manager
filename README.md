@@ -2,11 +2,13 @@
 
 Simple test project management system
 
-## installation
-
+## Installation after cloning
+* cd simple-project-manager
+* copy .env.example .env
 * npm install
 * composer install
-* php artisan generate:key
-* php artisan migrate
-* npm run build
+* php artisan key:generate
+* php artisan migrate (will ask to create new db file (yes))
+
+#### Run
 * npm run dev
