@@ -47,10 +47,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
                             projects.map(
                                 (project) => (
 
-                                        <TableRow key={project.id}>
+                                        <TableRow key={project.id} className='cursor-default'>
                                             <TableCell className="font-medium">
                                                 
-                                                    <div className="flex">{project.name} 
+                                                    <div className="flex">
+                                                        
+                                                        <Link href={`projects/` + project.id + `/view`}>{project.name}</Link>
+                                                        
                                                         <TooltipProvider>
                                                             <Tooltip>
                                                                 <TooltipTrigger asChild>

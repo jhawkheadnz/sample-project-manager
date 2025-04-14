@@ -39,6 +39,16 @@ class ProjectController extends Controller
         ]);
 
     }
+
+    public function show($id) {
+
+        $project = Project::find($id);
+
+        return Inertia::render("projects/view", [
+            'project' => $project,
+        ]);
+
+    }
     
     
     public function update(Request $request) : RedirectResponse {

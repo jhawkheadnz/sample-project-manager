@@ -25,11 +25,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post("projects/store", [ProjectController::class, "store"])
         ->name('projects.store');
 
+    Route::get("projects/{project}/view", [ProjectController::class, "show"])
+        ->name("projects.view");
+
     Route::get("projects/{project}/edit", [ProjectController::class, "edit"])
         ->name("projects.edit");
 
     Route::post("projects", [ProjectController::class, "update"])
         ->name("projects.update");
+
 
 });
 
