@@ -39,6 +39,25 @@ class ProjectController extends Controller
         ]);
 
     }
+    
+    
+    public function update(Request $request) : RedirectResponse {
+
+        $project = Project::find($request->id);
+
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->start_date = $request->start_date;
+        $project->completed = $request->completed;
+
+        $input = $request->all();
+
+        $project->update($input);
+
+        return to_route("projects");
+
+    }
+
 
     public function store(Request $request) : RedirectResponse {
 
@@ -71,26 +90,5 @@ class ProjectController extends Controller
 
     }
 
-    public function create(){}
-
-    public function update(Request $request) : RedirectResponse {
-
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'start_date' => 'required|string'
-        ]);
-
-        $project = Project::update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'user_id' => Auth::id(),
-            'completed' => false
-        ]);
-
-        return to_route("projects");
-
-    }
 
 }

@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get("projects/{project}/edit", [ProjectController::class, "edit"])
         ->name("projects.edit");
 
-    Route::get("projects/{project}/update", [ProjectController::class, "update"])
+    Route::post("projects", [ProjectController::class, "update"])
         ->name("projects.update");
 
 });

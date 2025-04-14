@@ -10,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Projects',
+        title: 'Edit Project',
         href: '/projects',
     },
 ];
@@ -60,7 +60,7 @@ export default function ProjectView({ project }: { project: Project }) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Projects"></Head>
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                    <h1 className="text-3xl font-bold">{project.name}</h1>
+                    <h1 className="text-3xl font-bold"><span className=''>Edit:</span> {project.name}</h1>
                     <p className="text-xs text-gray-500">
                         <strong>Created By: {project.user_id}</strong> on {project.start_date}
                     </p>

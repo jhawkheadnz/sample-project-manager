@@ -3,6 +3,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Settings } from 'lucide-react';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -45,11 +47,22 @@ export default function Projects({ projects }: { projects: Project[] }) {
                             projects.map(
                                 (project) => (
 
-                                        <TableRow>
+                                        <TableRow key={project.id}>
                                             <TableCell className="font-medium">
-                                                <Link href={`projects/` + project.id + `/edit`}>
-                                                    {project.name}
-                                                </Link>
+                                                
+                                                    <div className="flex">{project.name} 
+                                                        <TooltipProvider>
+                                                            <Tooltip>
+                                                                <TooltipTrigger asChild>
+                                                                    <Link href={`projects/` + project.id + `/edit`}><Settings className='ml-4' /></Link>
+                                                                </TooltipTrigger>
+                                                                <TooltipContent>
+                                                                    <div className='rounded mb-3 bg-gray-600 text-white p-2'><p>Update this project's details.</p></div>
+                                                                </TooltipContent>
+                                                            </Tooltip>
+                                                        </TooltipProvider>
+                                                    </div>
+                                                
                                             </TableCell>
                                             <TableCell>{project.description}</TableCell>
                                             <TableCell className="text-right">{project.start_date}</TableCell>
