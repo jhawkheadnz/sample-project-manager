@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Project\TaskController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -33,6 +34,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post("projects", [ProjectController::class, "update"])
         ->name("projects.update");
+
+    Route::get("tasks", [TaskController::class, "index"])
+        ->name("tasks.create");
 
 
 });
