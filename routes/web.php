@@ -19,6 +19,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get("projects", [ProjectController::class, "index"])
         ->name("projects");
 
+    Route::get("tasks", [TaskController::class, "index"])
+        ->name("tasks");    
+
+    Route::get("tasks/{project}/create", [TaskController::class, "create"])
+        ->name("tasks.create");
+
     Route::get("projects/create", function(){
         return Inertia::render("projects/create");
     })->name('projects.create');
@@ -35,8 +41,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post("projects", [ProjectController::class, "update"])
         ->name("projects.update");
 
-    Route::get("tasks", [TaskController::class, "index"])
-        ->name("tasks.create");
 
 
 });

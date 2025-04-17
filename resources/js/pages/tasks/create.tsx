@@ -42,6 +42,7 @@ export default function TaskMain() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Projects" />
             <div className="max-w-[600px] flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+                TODO: Add task to project...
                 {/* <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
 
                     Task:

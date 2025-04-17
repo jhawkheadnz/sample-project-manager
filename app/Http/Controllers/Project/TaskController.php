@@ -16,8 +16,18 @@ use App\Models\Project;
 class TaskController extends Controller
 {
     public function index(){
+    
+        $tasks = Task::all();
 
-        Inertia::render("tasks/create");
+        return Inertia::render("tasks/index", ['tasks' => $tasks,]);
 
     }
+
+    public function create(){
+
+        return Inertia::render("tasks/create");
+
+    }
+
+
 }
