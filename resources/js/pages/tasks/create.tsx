@@ -8,42 +8,59 @@ import { Button } from '@/components/ui/button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Create a Project',
-        href: '/tasks/create',
+        title: 'Project',
+        href: '/projects/'
     },
+    {
+        title: 'Tasks',
+        href: '/tasks/create',
+    },{
+        title: 'Create a Task',
+        href: '/tasks/create'
+    }
 ];
 
-type CreateProjectForm = {
+interface Project {
+    id: number;
+    name: string;
+    description: string;
+    start_date: string;
+    user_id: string;
+    completed: number;
+}
+
+type CreateTaskForm = {
     name: string,
     description: string,
-    start_date: string
+    project: number
 }
-export default function TaskMain() {
+export default function TaskMain({ project }:{ project : Project }) {
 
-    // const { data, setData, post } = useForm<Required<CreateProjectForm>>({
-    //     name: '',
-    //     description: '',
-    //     start_date: '',
-    // });
+    //console.log(project);
 
-    // const handleSubmit: FormEventHandler = (e) => {
+    const { data, setData, post } = useForm<Required<CreateTaskForm>>({
+        name: '',
+        description: '',
+        project: project.id
+    });
 
-    //     e.preventDefault();
+    const handleSubmit: FormEventHandler = (e) => {
 
-    //     console.log(data);
+        e.preventDefault();
 
-    //     post(route("tasks.store"), {
-    //         onFinish: () => { console.log(e); }
-    //     });
+        console.log(data);
 
-    // }
+        post(route("tasks.store"), {
+            onFinish: () => { console.log(e); }
+        });
+
+    }
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Projects" />
             <div className="max-w-[600px] flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                TODO: Add task to project...
-                {/* <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
+                <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
 
                     Task:
                     <Input
@@ -53,7 +70,7 @@ export default function TaskMain() {
                         tabIndex={1}
                         value={data.name}
                         onChange={(e)=> setData('name', e.target.value)}
-                        placeholder="Project Name..." />    
+                        placeholder="Task Name..." />    
 
                     Description:
                     <Textarea
@@ -63,11 +80,13 @@ export default function TaskMain() {
                         tabIndex={2}
                         value={data.description}
                         onChange={(e) => setData('description', e.target.value)}
-                        placeholder="Describe this project..."
+                        placeholder="Describe this task..."
                         />
 
+                    <Input id="project" value={data.project} readOnly />
+
                     <Button type="submit">Add Task</Button>
-                </form> */}
+                </form>
             </div>
         </AppLayout>
     );
