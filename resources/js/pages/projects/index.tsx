@@ -23,7 +23,7 @@ interface Project {
 
 export default function Projects({ projects }: { projects: Project[] }) {
 
-    console.log(projects);
+    //console.log(projects);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

@@ -51,7 +51,7 @@ export default function TaskMain({ project }:{ project : Project }) {
         //console.log(data);
 
         post(route("tasks.store"), {
-            onFinish: () => { console.log(e); }
+            onFinish: () => { } //console.log(e); }
         });
 
     }
