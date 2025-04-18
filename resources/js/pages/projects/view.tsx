@@ -2,7 +2,7 @@ import EditTaskDialog from '@/components/task-dialog';
 import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Project, Task, User, type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { BadgeInfo, Settings } from 'lucide-react';
 import {
@@ -14,7 +14,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -28,30 +27,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/projects',
     },
 ];
-
-interface Task {
-    id: number;
-    name: string;
-    description: string;
-    completed: boolean;
-    progress: number;
-    project_id: number;
-}
-
-interface Project {
-    id: number;
-    name: string;
-    description: string;
-    start_date: string;
-    user_id: string;
-    completed: number;
-}
-
-interface User {
-    id: number;
-    email: string;
-    name: string;
-}
 
 function updateTask(){
 

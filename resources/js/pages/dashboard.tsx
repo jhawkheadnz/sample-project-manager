@@ -19,7 +19,9 @@ export default function Dashboard() {
                 <Card>
                     <CardHeader>
                         <div>Recent Projects</div>
-                        <p className="text-gray-500 text-sm">Here are all the recently added projects...</p>
+
+                        
+
                     </CardHeader>
                     <CardContent>
                     </CardContent>

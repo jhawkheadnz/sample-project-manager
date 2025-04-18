@@ -5,6 +5,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
 import { Settings } from 'lucide-react';
+import { Project } from '@/types';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -13,13 +14,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/projects',
     },
 ];
-
-interface Project {
-    id: number;
-    name: string;
-    description: string;
-    start_date: string;
-}
 
 export default function Projects({ projects }: { projects: Project[] }) {
 
