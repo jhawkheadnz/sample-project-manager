@@ -6,12 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Create a Project',
-        href: '/projects/create',
-    },
-];
+
 
 type CreateProjectForm = {
     name: string,
@@ -19,6 +14,17 @@ type CreateProjectForm = {
     start_date: string
 }
 export default function Dashboard() {
+    
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Projects',
+            href: '/projects'
+        },
+        {
+            title: 'Create a Project',
+            href: '/projects/create',
+        },
+    ];
 
     const { data, setData, post } = useForm<Required<CreateProjectForm>>({
         name: '',

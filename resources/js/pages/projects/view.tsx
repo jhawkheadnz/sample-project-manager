@@ -21,12 +21,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Show Project Info and Tasks',
-        href: '/projects',
-    },
-];
+
 
 function updateTask(){
 
@@ -35,6 +30,16 @@ function updateTask(){
 }
 
 export default function ProjectView({ project, tasks, creator }: { project: Project, tasks: Task[], creator: User }) {
+    
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Projects',
+            href: '/projects',
+        },{
+            title: project.name,
+            href: '/projects/' + project.id + '/view'
+        }
+    ];
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

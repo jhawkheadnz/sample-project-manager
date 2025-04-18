@@ -20,7 +20,7 @@ export default function Dashboard({projects} : { projects : Project[]}) {
                 
                 <Card className='w-180 flex-1'>
                     <CardHeader className='border-b border-gray-200 pb-5'>
-                        <div className="font-bold text-xl">Recently Added Projects ({projects.filter(project=>!project.completed).length})</div>
+                        <div className="font-bold text-xl">Recently Added Projects ({projects.filter(project=>! project.completed).length})</div>
                     </CardHeader>
                     <CardContent className='p-0 m-0'>
                         <ul className="justify-between">
@@ -39,7 +39,7 @@ export default function Dashboard({projects} : { projects : Project[]}) {
                     <CardHeader className='border-b border-gray-200 pb-5'>
                         <div className="font-bold text-xl">Completed Projects ({projects.filter(project=>project.completed).length})</div>
                     </CardHeader>
-                    <CardContent className='p-0 m-0'>
+                    <div className='p-0 m-0'>
                         <ul className="justify-between">
                             {projects.filter(project => project.completed).map((project) => (
                                <Link key={project.id} href={`projects/` + project.id + `/view`} >
@@ -49,7 +49,7 @@ export default function Dashboard({projects} : { projects : Project[]}) {
                                 </Link>
                             ))}
                         </ul>
-                    </CardContent>
+                    </div>
                 </Card>
 
             </div>

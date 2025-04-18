@@ -100,6 +100,7 @@ class ProjectController extends Controller
 
         return Inertia::render("projects/edit", [
             'project' => $project,
+            'user' => $project->user
         ]);
 
     }

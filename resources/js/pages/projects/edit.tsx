@@ -1,39 +1,33 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Project, User, type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { FormEventHandler } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
+import { cp } from 'fs';
 
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Edit Project',
-        href: '/projects',
-    },
-];
-
-interface Project {
+type CreateProjectForm = {
     id: number;
     name: string;
     description: string;
     start_date: string;
-    user_id: string;
-    completed: number;
+    user_id: number;
+    completed: boolean;
 }
 
-type CreateProjectForm = {
-    id: number,
-    name: string,
-    description: string,
-    start_date: string,
-    user_id: string,
-    completed: number
-}
+export default function ProjectView({ project, user }: { project: Project, user: User }) {
 
-export default function ProjectView({ project }: { project: Project }) {
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Projects',
+            href: '/projects',
+        },{
+            title: 'Edit: ' + project.name,
+            href: '/projects/' + project.id + '/edit',
+        }
+    ];
 
     const { data, setData, post } = useForm<Required<CreateProjectForm>>({
         id: project.id,
@@ -41,7 +35,7 @@ export default function ProjectView({ project }: { project: Project }) {
         description: project.description,
         start_date: project.start_date,
         user_id: project.user_id,
-        completed: project.completed,
+        completed: project.completed
     });
 
     const handleSubmit: FormEventHandler = (e) => {
@@ -62,7 +56,7 @@ export default function ProjectView({ project }: { project: Project }) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                     <h1 className="text-3xl font-bold"><span className=''>Edit:</span> {project.name}</h1>
                     <p className="text-xs text-gray-500">
-                        <strong>Created By: {project.user_id}</strong> on {project.start_date}
+                        <strong>Created By: {user.name}</strong> on {project.start_date}
                     </p>
                 <hr />
 
@@ -102,7 +96,7 @@ export default function ProjectView({ project }: { project: Project }) {
                     Completed: <Checkbox
                         id="completed"
                         tabIndex={4}
-                        value={data.completed}
+                        value={String(data.completed)}
                         />
 
                     <Button type="submit">Create Project</Button>
