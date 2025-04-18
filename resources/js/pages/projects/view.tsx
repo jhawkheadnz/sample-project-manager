@@ -1,8 +1,10 @@
+import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { BadgeInfo, Settings } from 'lucide-react';
+import React from 'react';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -11,6 +13,15 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/projects',
     },
 ];
+
+interface Task {
+    id: number;
+    name: string;
+    description: string;
+    completed: boolean;
+    progress: number;
+    project_id: number;
+}
 
 interface Project {
     id: number;
@@ -21,16 +32,13 @@ interface Project {
     completed: number;
 }
 
-type CreateProjectForm = {
-    id: number,
-    name: string,
-    description: string,
-    start_date: string,
-    user_id: string,
-    completed: number
+interface User {
+    id: number;
+    email: string;
+    name: string;
 }
 
-export default function ProjectView({ project }: { project: Project }) {
+export default function ProjectView({ project, tasks, creator }: { project: Project, tasks: Task[], creator: User }) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -51,28 +59,37 @@ export default function ProjectView({ project }: { project: Project }) {
                             <BadgeInfo className='mr-3 ml-3' style={{ color: "#36a832" }} /> 
                        </div>
                         <p className="text-xs text-gray-500">
-                            <strong>Created By: {project.user_id}</strong> on {project.start_date}
+                            <strong>Created By: {creator.name}</strong> on {project.start_date}
                         </p>
                     </div>
 
                     <hr />
 
-                    <div className='font-semibold text-2xl'>Project Tasks</div>
+                    <div className='font-semibold text-2xl flex item-center align-middle'>
+                        <div className='mr-4 mt-1'>Project Tasks</div>
+                        <Link href={`/tasks/` + project.id + `/create`}><button className='bg-blue-500 py-2 px-5 cursor-pointer text-sm text-white rounded'>Add a Task</button></Link>
+                    </div>
 
                     <Table>
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="font-bold">Task</TableHead>
                                 <TableHead className="font-bold">Description</TableHead>
-                                <TableHead className="text-right font-bold">Status</TableHead>
+                                <TableHead className="text-right font-bold">% Completed</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow className='cursor-default'>
-                                <TableCell className="font-medium">... task ...</TableCell>
-                                <TableCell>... description ...</TableCell>
-                                <TableCell className="text-right">... status ...</TableCell>
-                            </TableRow>
+                            {
+                                tasks.map((task) => (
+                                <TableRow key={task.id} className='cursor-default'>
+                                    <TableCell className="font-medium">{task.name}</TableCell>
+                                    <TableCell>{task.description}</TableCell>
+                                    <TableCell className="text-right">
+                                        <Progress value={task.progress} />{task.progress}%
+                                    </TableCell>
+                                </TableRow>
+                                ))
+                            }
                         </TableBody>
                     </Table>
 

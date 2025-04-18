@@ -48,7 +48,7 @@ export default function TaskMain({ project }:{ project : Project }) {
 
         e.preventDefault();
 
-        console.log(data);
+        //console.log(data);
 
         post(route("tasks.store"), {
             onFinish: () => { console.log(e); }
@@ -83,7 +83,14 @@ export default function TaskMain({ project }:{ project : Project }) {
                         placeholder="Describe this task..."
                         />
 
-                    <Input id="project" value={data.project} readOnly />
+                    <Input
+                        id="project_id"
+                        type='hidden'
+                        required
+                        tabIndex={1}
+                        value={data.project}
+                        onChange={(e)=> setData('project', Number.parseInt(e.target.value))}
+                        placeholder="Task Name..." />    
 
                     <Button type="submit">Add Task</Button>
                 </form>

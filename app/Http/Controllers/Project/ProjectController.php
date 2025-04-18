@@ -12,6 +12,7 @@ use Inertia\Response;
 
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Task;
 
 class ProjectController extends Controller
 {
@@ -43,9 +44,12 @@ class ProjectController extends Controller
     public function show($id) {
 
         $project = Project::find($id);
+        $user = User::find($project->user_id);
 
         return Inertia::render("projects/view", [
             'project' => $project,
+            'tasks' => $project->tasks,
+            'creator' => $user
         ]);
 
     }

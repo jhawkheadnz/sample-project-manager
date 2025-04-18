@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post("projects", [ProjectController::class, "update"])
         ->name("projects.update");
 
-    Route::post("tasks/{project}/store", [TaskController::class, "store"])
+    Route::post("tasks/store", [TaskController::class, "store"])
         ->name("tasks.store");
 
 });

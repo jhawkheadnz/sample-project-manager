@@ -12,6 +12,7 @@ use Inertia\Response;
 
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -36,18 +37,16 @@ class TaskController extends Controller
             'description' => 'required|string'
         ]);
 
-        $project_id = Project::find($request->project_id);
-
         $task = Task::create([
             'name' => $request->name,
             'description' => $request->description,
             'completed' => false,
             'progress' => 0,
             'user_id' => Auth::id(),
-            //'project_id' => $project_id
+            'project_id' => $request->project
         ]);
 
-        return to_route("projects/" . $project_id . "/view");
+        return to_route("projects.view", ['project' => $request->project]);
 
     }
 
